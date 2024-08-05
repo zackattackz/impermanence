@@ -241,7 +241,7 @@ in
               ++ optional (versionAtLeast pkgs.bindfs.version "1.14.9") "fsname=${targetDir}"
             );
             bindfsOptionFlag = optionalString (bindfsOptions != "") (" -o " + bindfsOptions);
-            bindfs = "bindfs" + bindfsOptionFlag;
+            bindfs = "${pkgs.bindfs}/bin/bindfs" + bindfsOptionFlag;
             startScript = pkgs.writeShellScript name ''
               set -eu
               if ! mount | grep -F ' '${mountPoint}' ' && ! mount | grep -F ' '${mountPoint}/; then
